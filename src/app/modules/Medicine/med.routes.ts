@@ -6,4 +6,5 @@ const router = Router();
 router.post("/add", MedicineController.addMedicine); // Route to add medicine
 router.get("/status/:medicineName", MedicineController.getMedicineStatus); // Route to get medicine status
 
-export default router;
+const medicineRoutes = router;
+export default medicineRoutes;

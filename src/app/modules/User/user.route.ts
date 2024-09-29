@@ -1,11 +1,12 @@
-import { Router } from 'express';
-import UserController from './user.controller';
+import { Router } from "express";
+import userController from "./user.controller";
 
 const router = Router();
 
-router.post('/users/add', UserController.addUser); // Add new user
-router.get('/users/:userId', UserController.getUser); // Get user info
-router.post('/users/:userId/medicines/add', UserController.addMedicineToUser); // Add medicine to a user
-router.get('/users/:userId/medicines', UserController.getUserMedicines); // Get user's medicines
+router.post("/add", userController.addUser); // Route to add a user
+router.get("/:userId", userController.getUser); // Route to get a user by ID
+router.post("/:userId/medicine", userController.addMedicineToUser); // Route to add medicine to a user
+router.get("/:userId/medicines", userController.getUserMedicines); // Route to get all medicines for a user
 
-export default router;
+const userRoutes = router;
+export default userRoutes;
