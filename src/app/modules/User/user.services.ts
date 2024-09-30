@@ -41,14 +41,28 @@ const getUserMedicines = async (
 
 // Get all users with _id, relation, and image
 const getAllUsersBasicInfo = async (): Promise<Partial<IUser>[]> => {
-  return await User.find({}, 'relation image'); // Fetch only specified fields
+  return await User.find({}, "relation image"); // Fetch only specified fields
 };
 
+// Update a user by ID
+const updateUser = async (
+  userId: string,
+  updateData: Partial<IUser>
+): Promise<IUser | null> => {
+  return await User.findByIdAndUpdate(userId, updateData, { new: true });
+};
+
+// Delete a user by ID
+const deleteUser = async (userId: string): Promise<IUser | null> => {
+  return await User.findByIdAndDelete(userId);
+};
 
 export default {
   addUser,
   getUser,
   addMedicineToUser,
   getUserMedicines,
-  getAllUsersBasicInfo
+  getAllUsersBasicInfo,
+  updateUser,
+  deleteUser,
 };
