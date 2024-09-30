@@ -57,6 +57,9 @@ const deleteUser = async (userId: string): Promise<IUser | null> => {
   return await User.findByIdAndDelete(userId);
 };
 
+
+
+
 export default {
   addUser,
   getUser,
