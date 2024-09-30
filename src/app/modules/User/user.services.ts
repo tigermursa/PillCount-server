@@ -39,9 +39,16 @@ const getUserMedicines = async (
   return user.medicines ?? [];
 };
 
+// Get all users with _id, relation, and image
+const getAllUsersBasicInfo = async (): Promise<Partial<IUser>[]> => {
+  return await User.find({}, 'relation image'); // Fetch only specified fields
+};
+
+
 export default {
   addUser,
   getUser,
   addMedicineToUser,
   getUserMedicines,
+  getAllUsersBasicInfo
 };

@@ -62,9 +62,25 @@ const getUserMedicines = async (req: Request, res: Response) => {
   }
 };
 
+
+// Get all users with _id, relation, and image
+const getAllUsersWithBasicInfo = async (req: Request, res: Response) => {
+  try {
+    const users = await userServices.getAllUsersBasicInfo();
+    res.status(200).json(users);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An unexpected error occurred" });
+    }
+  }
+};
+
 export default {
   addUser,
   getUser,
   addMedicineToUser,
   getUserMedicines,
+  getAllUsersWithBasicInfo,
 };
