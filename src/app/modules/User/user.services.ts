@@ -41,7 +41,7 @@ const getUserMedicines = async (
 
 // Get all users with _id, relation, and image
 const getAllUsersBasicInfo = async (): Promise<Partial<IUser>[]> => {
-  return await User.find({}, "relation image"); // Fetch only specified fields
+  return await User.find({}, "relation image age name"); // Fetch only specified fields
 };
 
 // Update a user by ID
