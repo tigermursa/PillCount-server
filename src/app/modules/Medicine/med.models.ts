@@ -5,7 +5,8 @@ const MedicineSchema: Schema = new Schema({
   name: { type: String, required: true, unique: true },
   totalTablets: { type: Number, required: true },
   tabletsToTake: { type: Number, required: true },
-  daysRemaining: { type: Number, default: 10 }, // Default to 10 days
+  daysRemaining: { type: Number },
+  price: { type: Number },
   isOver: { type: Boolean, default: false }, // Flag for whether the medicine is finished
 });
 

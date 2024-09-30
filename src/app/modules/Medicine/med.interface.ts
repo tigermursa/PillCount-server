@@ -3,6 +3,7 @@ export interface IMedicine {
   name: string;
   totalTablets: number;
   tabletsToTake: number;
-  daysRemaining: number;
+  daysRemaining?: number;
+  price: number;
   isOver: boolean;
 }
