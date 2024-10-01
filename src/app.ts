@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api/user", userRoutes);
-app.use("/api/med", medRoutes);
+app.use("/api/medicine", medRoutes);
 
 app.get("/", (req, res) => {
   res.send("The Server Running Alhamdulillah 🥰");
