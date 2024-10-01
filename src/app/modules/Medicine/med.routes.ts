@@ -1,10 +1,9 @@
 import { Router } from "express";
-import MedicineController from "./med.controller";
+import medController from "./med.controller";
 
 const router = Router();
+router.post("/:userId/medicine", medController.addMedicineToUser); // Route to add medicine to a user
+router.get("/:userId/medicines", medController.getUserMedicines); // Route to get all medicines for a user
 
-router.post("/add", MedicineController.addMedicine); // Route to add medicine
-router.get("/status/:medicineName", MedicineController.getMedicineStatus); // Route to get medicine status
-
-const medicineRoutes = router;
-export default medicineRoutes;
+const medRoutes = router;
+export default medRoutes;

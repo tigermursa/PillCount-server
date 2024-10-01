@@ -1,13 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { IUser } from "./user.interface";
-
-const MedicineSchema: Schema = new Schema({
-  name: { type: String, required: true },
-  totalTablets: { type: Number, required: true },
-  tabletsToTake: { type: Number, required: true },
-  daysRemaining: { type: Number, default: 10 },
-  isOver: { type: Boolean, default: false },
-});
+import { MedicineSchema } from "../Medicine/med.models";
 
 const UserSchema: Schema = new Schema({
   name: { type: String, required: true },
