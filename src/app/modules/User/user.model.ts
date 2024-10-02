@@ -5,6 +5,7 @@ const MedicineSchema: Schema = new Schema({
   name: { type: String, required: true },
   totalTablets: { type: Number, required: true },
   tabletsToTake: { type: Number, required: true },
+  price: { type: Number, required: true },
   isOver: { type: Boolean, default: false },
 });
 
