@@ -108,15 +108,18 @@ const deleteMedicineById = async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
     const medicineId = req.params.medicineId;
+
+    // Calling the service that deletes the medicine
     const updatedUser = await userServices.deleteMedicineById(
       userId,
       medicineId
     );
 
     if (!updatedUser) {
-      return res.status(404).json({ message: "User or Medicine not found" });
+      return res.status(404).json({ message: "User not found" });
     }
 
+    // Check if the medicine was deleted successfully
     res
       .status(200)
       .json({ message: "Medicine deleted successfully", updatedUser });

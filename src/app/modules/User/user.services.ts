@@ -1,6 +1,7 @@
 import User from "./user.model";
 import { IUser } from "./user.interface";
 import { IMedicine } from "../Medicine/med.interface";
+import mongoose from "mongoose";
 
 // Add a new user
 const addUser = async (userData: IUser): Promise<IUser> => {
@@ -52,11 +53,15 @@ const getUserMedicinesWithTotal = async (userId: string) => {
 
 // Delete a medicine by its _id for a specific user
 const deleteMedicineById = async (userId: string, medicineId: string) => {
+  const objectId = new mongoose.Types.ObjectId(medicineId); // Convert the medicineId to ObjectId
+
+  // Use findByIdAndUpdate to remove only the medicine
   const user = await User.findByIdAndUpdate(
     userId,
-    { $pull: { medicines: { _id: medicineId } } }, // Pull the medicine with the matching _id
-    { new: true }
+    { $pull: { medicines: { _id: objectId } } }, // Pull the medicine with the matching ObjectId
+    { new: true } // Return the updated user document
   );
+
   return user;
 };
 
