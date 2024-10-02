@@ -103,6 +103,59 @@ const getUserMedicinesWithTotal = async (req: Request, res: Response) => {
   }
 };
 
+// Delete a medicine by its _id
+const deleteMedicineById = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const medicineId = req.params.medicineId;
+    const updatedUser = await userServices.deleteMedicineById(
+      userId,
+      medicineId
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User or Medicine not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Medicine deleted successfully", updatedUser });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An unexpected error occurred" });
+    }
+  }
+};
+
+// Update a medicine by its _id
+const updateMedicineById = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const medicineId = req.params.medicineId;
+    const updateData = req.body;
+    const updatedUser = await userServices.updateMedicineById(
+      userId,
+      medicineId,
+      updateData
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User or Medicine not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Medicine updated successfully", updatedUser });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An unexpected error occurred" });
+    }
+  }
+};
 export default {
   addUser,
   getUser,
@@ -110,4 +163,6 @@ export default {
   updateUser,
   deleteUser,
   getUserMedicinesWithTotal,
+  deleteMedicineById,
+  updateMedicineById,
 };
