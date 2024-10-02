@@ -81,10 +81,33 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
+// Get user medicines and total price
+const getUserMedicinesWithTotal = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const medicineData = await userServices.getUserMedicinesWithTotal(userId);
+
+    if (!medicineData) {
+      return res
+        .status(404)
+        .json({ message: "User not found or no medicines available" });
+    }
+
+    res.status(200).json(medicineData);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An unexpected error occurred" });
+    }
+  }
+};
+
 export default {
   addUser,
   getUser,
   getAllUsersWithBasicInfo,
   updateUser,
   deleteUser,
+  getUserMedicinesWithTotal,
 };

@@ -30,10 +30,30 @@ const deleteUser = async (userId: string): Promise<IUser | null> => {
   return await User.findByIdAndDelete(userId);
 };
 
+// Get user's medicine details and total price
+const getUserMedicinesWithTotal = async (userId: string) => {
+  const user = await User.findById(userId).select("medicines");
+  if (!user || !user.medicines) {
+    return null;
+  }
+  const medicines = user.medicines.map((med) => ({
+    name: med.name,
+    price: med.price,
+  }));
+
+  const total = user.medicines.reduce((sum, med) => sum + med.price, 0);
+
+  return {
+    medicines,
+    total,
+  };
+};
+
 export default {
   addUser,
   getUser,
   getAllUsersBasicInfo,
   updateUser,
   deleteUser,
+  getUserMedicinesWithTotal,
 };
