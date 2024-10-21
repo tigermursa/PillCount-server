@@ -4,5 +4,5 @@ export interface IMedicine {
   totalTablets: number;
   tabletsToTake: number;
   price: number;
-  isOver: boolean;
-}
+//   isOver: boolean;
+// }
